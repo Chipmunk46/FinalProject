@@ -1,0 +1,66 @@
+{% extends 'recipes/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block body %}
+    <h1>Home</h1>
+        <div class="row mt-4 ml-1">
+            <h2>Site Information</h2>
+            <div class="col mt-3 ml-4">
+                <p>If you're looking for the best collection of homemade recipes made by users like you, you've come to the right</p>
+                <p>place. With many useful features such as recipe creation, being able to save your favorite recipes, finding,</p>
+                <p>new recipes to tory out, and even being able to easily find more for other applications via our API! Enjoy Recipe Tracker!</p>
+            </div>
+
+        </div>
+
+    <h2>Saved Recipes</h2>
+    <p>All your saved recipes!</p>
+    {% if personalRecipes is not None %}
+    {% endif %}
+    {% for item in personalRecipes %}
+        <div class="row mt-4">
+            <div class="col-md-3 offset-md-2 ">
+                <img class="card" height="150px" src="{{ item.item_image.url }}"/>
+            </div>
+            <div class="col-md-4">
+                <h2>{{ item.item_name }}</h2>
+                <h3>{{ item.item_description }}</h3>
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'recipes:recipedetail' item.id %}" class="btn btn-success">Details</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'recipes:deleterecipe' item.id %}" class="btn btn-success">Delete</a>
+                    <a href="{% url 'recipes:editrecipe' item.id %}" class="btn btn-success">Edit</a>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+    <h1>Reccommended Recipes</h1>
+    <p>Gives you a random selection of recipes, each one better than the last!</p>
+    {% for item in reccommended %}
+        <div class="row mt-4">
+            <div class="col-md-3 offset-md-2 ">
+                <img class="card" height="150px" src="{{ item.item_image.url }}"/>
+            </div>
+            <div class="col-md-4">
+                <h2>{{ item.item_name }}</h2>
+                <h3>{{ item.item_description }}</h3>
+            </div>
+            <div class="col-md-2">
+                <a href="{% url 'recipes:recipedetail' item.id %}" class="btn btn-success">Details</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'recipes:deleterecipe' item.id %}" class="btn btn-success">Delete</a>
+                    <a href="{% url 'recipes:editrecipe' item.id %}" class="btn btn-success">Edit</a>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
+</body>
+</html>

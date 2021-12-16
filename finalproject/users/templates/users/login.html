@@ -1,0 +1,8 @@
+{% extends 'recipes/base.html' %}
+{% block body %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Login</button>
+</form>
+{% endblock %}

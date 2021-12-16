@@ -1,0 +1,31 @@
+{% extends 'recipes/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block body %}
+    <div class="row mt-4">
+            <div class="col-md-3 offset-md-2">
+                <img class="card" height="150px" src="{{ item.item_image.url }}"/>
+            </div>
+            <div class="col-md-4">
+                <h1>{{ item.item_name }}</h1>
+                <h2>Description</h2>
+                <h3>{{ item.item_description }}</h3>
+                <h3>{{ item.item_author }}</h3>
+                <h2>Ingredients</h2>
+                <p>{{ item.item_ingredients }}</p>
+                <h2>Instructions</h2>
+                <p>{{ item.item_instructions }}</p>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+            <a href="{% url "recipes:browse" %}" class="btn btn-success">Back</a>
+            </div>
+    </div>
+{% endblock %}
+</body>
+</html>
